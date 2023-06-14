@@ -14,6 +14,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+    }
 
     stage('Build Docker Image') {
             agent {
@@ -38,3 +39,4 @@ pipeline {
                 sh 'docker stack deploy -c compose.yml myapps'
             }
     }
+}
