@@ -14,9 +14,8 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-    }
-
-    stage('Build Docker Image') {
+        
+        stage('Build Docker Image') {
             agent {
                 label 'node2'
             }
@@ -33,10 +32,11 @@ pipeline {
             }
         }
         
-    stage('Deploy') {
+        stage('Deploy') {
             steps {
                 // Deploy the Docker stack to the Swarm cluster
                 sh 'docker stack deploy -c compose.yml myapps'
             }
+        }
     }
 }
