@@ -1,15 +1,13 @@
 pipeline {
-    agent {
-        label 'node1'
-    }
-    
-    tools {
-        maven 'mymaven'
-        dockerTool 'mydocker' // Name of the Docker installation configured in Jenkins
-    }
+    agent none
     
     stages {
         stage('Build') {
+            agent {
+                node {
+                    label 'node1'
+                }
+            }
             steps {
                 sh 'mvn clean package'
             }
@@ -17,9 +15,10 @@ pipeline {
         
         stage('Build Docker Image') {
             agent {
-                label 'node2'
+                node {
+                    label 'node2'
+                }
             }
-            
             steps {
                 script {
                     def imageName = 'greyabiwon/springboot:v3'
@@ -33,8 +32,12 @@ pipeline {
         }
         
         stage('Deploy') {
+            agent {
+                node {
+                    label 'node1'
+                }
+            }
             steps {
-                // Deploy the Docker stack to the Swarm cluster
                 sh 'docker stack deploy -c compose.yml myapps'
             }
         }
