@@ -22,7 +22,7 @@ pipeline {
             
             steps {
                 script {
-                    def imageName = 'greyabiwon/springboot:v1'
+                    def imageName = 'greyabiwon/springboot:v2'
                     
                     docker.build(imageName, "-f Dockerfile .")
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-login') {
@@ -40,12 +40,12 @@ pipeline {
             steps {
                 script {
                     def containerName = 'springboot-app'
-                    def imageName = 'greyabiwon/springboot:v1'
+                    def imageName = 'greyabiwon/springboot:v2'
                     
                     sh "docker pull $imageName"
                     sh "docker stop $containerName || true"
                     sh "docker rm $containerName || true"
-                    sh "docker run -d -p 9090:80 --name $containerName $imageName"
+                    sh "docker run --name test -d -p 9393:80 --name $containerName $imageName"
                 }
             }
         }
