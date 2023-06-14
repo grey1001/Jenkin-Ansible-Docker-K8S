@@ -4,7 +4,6 @@ services:
     image: greyabiwon/springboot:v3
     ports:
       - 80:80
-    replicas: 3
     volumes:
       - ./html:/usr/share/nginx/html
     restart: always
