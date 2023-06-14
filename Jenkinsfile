@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy the Docker stack to the Swarm cluster
-                sh 'docker stack deploy -c compose.yml --replicas 3 myapps'
+                sh 'docker stack deploy -c compose.yml myapps'
             }
         }
     }
