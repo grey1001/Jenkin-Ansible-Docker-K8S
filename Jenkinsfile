@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             agent {
                 node {
-                    label 'node1'
+                    label 'master'
                 }
             }
             steps {
