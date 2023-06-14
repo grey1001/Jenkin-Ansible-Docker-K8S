@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: greyabiwon/springboot:
+    image: greyabiwon/springboot:v3
     ports:
       - 80:80
     volumes:
