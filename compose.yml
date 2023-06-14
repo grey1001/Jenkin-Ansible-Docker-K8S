@@ -8,5 +8,4 @@ services:
       - ./html:/usr/share/nginx/html
     deploy:
       replicas: 3
-    restart_policy:
-      condition: any
+    restart: always
